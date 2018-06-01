@@ -28,8 +28,8 @@ class ShowCommandTest extends TestCase
     public function testCommandOutputForFileAndSpecificLanguages()
     {
         $this->createTempFiles([
-            'en' => ['user' => "<?php\n return ['name' => 'Name', 'age' => 'Age'];"],
-            'nl' => ['user' => "<?php\n return ['name' => 'Naam'];"],
+            'en'      => ['user' => "<?php\n return ['name' => 'Name', 'age' => 'Age'];"],
+            'nl'      => ['user' => "<?php\n return ['name' => 'Naam'];"],
             'it_lang' => ['user' => "<?php\n return ['name' => 'Nome'];"],
         ]);
 
@@ -44,8 +44,8 @@ class ShowCommandTest extends TestCase
     public function testCommandOutputForPackageFile()
     {
         $this->createTempFiles([
-            'en' => ['user' => "<?php\n return ['weight' => 'weight'];", 'category' => ''],
-            'nl' => ['user' => '', 'category' => ''],
+            'en'     => ['user' => "<?php\n return ['weight' => 'weight'];", 'category' => ''],
+            'nl'     => ['user' => '', 'category' => ''],
             'vendor' => ['package' => ['en' => ['file' => "<?php\n return ['name' => 'name'];"], 'sp' => ['file' => "<?php\n return ['name' => 'something'];"]]],
         ]);
 

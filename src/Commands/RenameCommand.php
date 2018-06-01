@@ -41,6 +41,7 @@ class RenameCommand extends Command
      * ListCommand constructor.
      *
      * @param \NicolasBeauvais\Transcribe\Manager $manager
+     *
      * @return void
      */
     public function __construct(Manager $manager)
@@ -143,6 +144,7 @@ class RenameCommand extends Command
      * Get table rows for the list of files containing the old key.
      *
      * @param array $files
+     *
      * @return array
      */
     private function getTableRows($files)

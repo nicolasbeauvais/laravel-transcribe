@@ -1,7 +1,7 @@
 <?php
 
-use NicolasBeauvais\Transcribe\Manager;
 use Mockery as m;
+use NicolasBeauvais\Transcribe\Manager;
 
 class RemoveCommandTest extends TestCase
 {
@@ -90,8 +90,8 @@ class RemoveCommandTest extends TestCase
         $manager = $this->app[Manager::class];
 
         $this->createTempFiles([
-            'en' => ['user' => "<?php\n return ['weight' => 'weight'];", 'category' => ''],
-            'nl' => ['user' => '', 'category' => ''],
+            'en'     => ['user' => "<?php\n return ['weight' => 'weight'];", 'category' => ''],
+            'nl'     => ['user' => '', 'category' => ''],
             'vendor' => ['package' => ['en' => ['file' => "<?php\n return ['not_found' => 'file not found here'];"], 'sp' => ['file' => "<?php\n return ['not_found' => 'something'];"]]],
         ]);
 

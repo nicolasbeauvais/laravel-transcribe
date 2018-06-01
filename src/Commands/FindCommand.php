@@ -40,6 +40,7 @@ class FindCommand extends Command
      * ListCommand constructor.
      *
      * @param \NicolasBeauvais\Transcribe\Manager $manager
+     *
      * @return void
      */
     public function __construct(Manager $manager)
@@ -92,7 +93,7 @@ class FindCommand extends Command
                 $lines = $filesContent[$fileName][$languageKey] = Arr::dot($this->manager->getFileContent($filePath));
 
                 foreach ($lines as $key => $line) {
-                    if (! is_array($line) && stripos($line, $this->argument('keyword')) !== false) {
+                    if (!is_array($line) && stripos($line, $this->argument('keyword')) !== false) {
                         $output[$fileName.'.'.$key][$languageKey] = "<bg=yellow;fg=black>{$line}</>";
                     }
                 }

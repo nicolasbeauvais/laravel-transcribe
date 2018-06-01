@@ -40,6 +40,7 @@ class MissingCommand extends Command
      * ListCommand constructor.
      *
      * @param \NicolasBeauvais\Transcribe\Manager $manager
+     *
      * @return void
      */
     public function __construct(Manager $manager)
@@ -88,6 +89,7 @@ class MissingCommand extends Command
      * Collect translation values from console via questions.
      *
      * @param array $missing
+     *
      * @return array
      */
     private function collectValues(array $missing)
@@ -107,12 +109,13 @@ class MissingCommand extends Command
      * Get translation in default locale for the given key.
      *
      * @param string $missingKey
+     *
      * @return string
      */
     private function getDefaultValue($missingKey)
     {
-        if (! $this->option('default')) {
-            return null;
+        if (!$this->option('default')) {
+            return;
         }
 
         try {
@@ -124,7 +127,7 @@ class MissingCommand extends Command
 
             return config('app.locale').":{$this->manager->getFileContent($filePath)[$key]}";
         } catch (\Exception $e) {
-            return null;
+            return;
         }
     }
 
@@ -135,6 +138,7 @@ class MissingCommand extends Command
      * ex: [ ['key' => 'product.color.nl', 'hint' => 'en = "color"'] ]
      *
      * @param array $languages
+     *
      * @return array
      */
     private function getMissing(array $languages)
