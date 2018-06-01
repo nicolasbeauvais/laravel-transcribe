@@ -19,11 +19,11 @@ class Kernel extends \Illuminate\Foundation\Console\Kernel
     /**
      * Report the exception to the exception handler.
      *
-     * @param  \Exception $e
-     *
-     * @return void
+     * @param \Exception $e
      *
      * @throws \Exception
+     *
+     * @return void
      */
     protected function reportException(Exception $e)
     {

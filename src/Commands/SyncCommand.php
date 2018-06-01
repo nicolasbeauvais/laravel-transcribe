@@ -33,6 +33,7 @@ class SyncCommand extends Command
      * Command constructor.
      *
      * @param \NicolasBeauvais\Transcribe\Manager $manager
+     *
      * @return void
      */
     public function __construct(Manager $manager)
@@ -62,7 +63,9 @@ class SyncCommand extends Command
      * Synchronize keys found in project files but missing in languages.
      *
      * @param $translationFiles
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
      * @return void
      */
     private function syncKeysFromFiles($translationFiles)
@@ -95,8 +98,9 @@ class SyncCommand extends Command
      * Fill the missing keys with an empty string in the given file.
      *
      * @param string $fileName
-     * @param array $foundMissingKeys
+     * @param array  $foundMissingKeys
      * @param string $languageKey
+     *
      * @return void
      */
     private function fillMissingKeys($fileName, array $foundMissingKeys, $languageKey)
@@ -119,7 +123,9 @@ class SyncCommand extends Command
      * Synchronize keys that exist in a language but not the other.
      *
      * @param $translationFiles
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
      * @return void
      */
     private function syncKeysBetweenLanguages($translationFiles)

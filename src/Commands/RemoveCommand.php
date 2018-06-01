@@ -40,6 +40,7 @@ class RemoveCommand extends Command
      * ListCommand constructor.
      *
      * @param \NicolasBeauvais\Transcribe\Manager $manager
+     *
      * @return void
      */
     public function __construct(Manager $manager)

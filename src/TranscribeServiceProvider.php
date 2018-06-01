@@ -2,8 +2,8 @@
 
 namespace NicolasBeauvais\Transcribe;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\ServiceProvider;
 
 class TranscribeServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class TranscribeServiceProvider extends ServiceProvider
 
         $this->app->bind(Manager::class, function () {
             return new Manager(
-                new Filesystem,
+                new Filesystem(),
                 $this->app['config']['transcribe.path'],
                 array_merge($this->app['config']['view.paths'], [$this->app['path']])
             );

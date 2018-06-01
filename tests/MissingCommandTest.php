@@ -1,7 +1,7 @@
 <?php
 
-use NicolasBeauvais\Transcribe\Manager;
 use Mockery as m;
+use NicolasBeauvais\Transcribe\Manager;
 
 class MissingCommandTest extends TestCase
 {
@@ -11,12 +11,12 @@ class MissingCommandTest extends TestCase
 
         $this->createTempFiles([
             'en' => [
-                'user' => "<?php\n return ['name' => 'Name', 'age' => 'Age'];",
+                'user'    => "<?php\n return ['name' => 'Name', 'age' => 'Age'];",
                 'product' => "<?php\n return ['color' => 'color', 'size' => 'size'];",
                 'missing' => "<?php\n return ['missing' => ['id' => 'id missing', 'price' => '']];",
             ],
             'nl' => [
-                'user' => "<?php\n return ['name' => 'Naam', ];",
+                'user'    => "<?php\n return ['name' => 'Naam', ];",
                 'product' => "<?php\n return ['name' => 'Naam', 'size' => ''];",
             ],
         ]);

@@ -5,8 +5,8 @@ namespace NicolasBeauvais\Transcribe\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Exception\InvalidArgumentException;
 use NicolasBeauvais\Transcribe\Manager;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
 
 class ShowCommand extends Command
 {
@@ -109,7 +109,7 @@ class ShowCommand extends Command
 
         foreach ($this->files as $languageKey => $file) {
             foreach ($filesContent[$languageKey] = Arr::dot($this->manager->getFileContent($file)) as $key => $value) {
-                if (! $this->shouldShowKey($key)) {
+                if (!$this->shouldShowKey($key)) {
                     continue;
                 }
 
@@ -195,11 +195,11 @@ class ShowCommand extends Command
                 return true;
             }
 
-            if (! $this->option('close') && $key != $this->key) {
+            if (!$this->option('close') && $key != $this->key) {
                 return false;
             }
 
-            if ($this->option('close') && ! Str::contains($key, $this->key)) {
+            if ($this->option('close') && !Str::contains($key, $this->key)) {
                 return false;
             }
         }
@@ -216,7 +216,7 @@ class ShowCommand extends Command
     {
         $allLanguages = $this->manager->languages();
 
-        if (! $this->option('lang')) {
+        if (!$this->option('lang')) {
             return $allLanguages;
         }
 

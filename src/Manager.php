@@ -35,7 +35,7 @@ class Manager
      * Manager constructor.
      *
      * @param Filesystem $disk
-     * @param string $path
+     * @param string     $path
      */
     public function __construct(Filesystem $disk, $path, array $syncPaths)
     {
@@ -58,7 +58,7 @@ class Manager
         });
 
         $filesByFile = $files->groupBy(function ($file) {
-            $filePath = str_replace('.' . $file->getExtension(), '', $file->getRelativePathname());
+            $filePath = str_replace('.'.$file->getExtension(), '', $file->getRelativePathname());
             $filePath = array_reverse(explode('/', $filePath, 2))[0];
 
             if (Str::contains($file->getPath(), 'vendor')) {
@@ -81,7 +81,7 @@ class Manager
         // If the path does not contain "vendor" then we're looking at the
         // main language files of the application, in this case we will
         // neglect all vendor files.
-        if (! Str::contains($this->path, 'vendor')) {
+        if (!Str::contains($this->path, 'vendor')) {
             $filesByFile = $this->neglectVendorFiles($filesByFile);
         }
 
@@ -92,6 +92,7 @@ class Manager
      * Nelgect all vendor files.
      *
      * @param $filesByFile Collection
+     *
      * @return array
      */
     private function neglectVendorFiles($filesByFile)
@@ -99,7 +100,7 @@ class Manager
         $return = [];
 
         foreach ($filesByFile->toArray() as $key => $value) {
-            if (! Str::contains($key, ':')) {
+            if (!Str::contains($key, ':')) {
                 $return[$key] = $value;
             }
         }
@@ -133,13 +134,14 @@ class Manager
      * Create a file for all languages if does not exist already.
      *
      * @param $fileName
+     *
      * @return void
      */
     public function createFile($fileName)
     {
         foreach ($this->languages() as $languageKey) {
             $file = $this->path."/{$languageKey}/{$fileName}.php";
-            if (! $this->disk->exists($file)) {
+            if (!$this->disk->exists($file)) {
                 file_put_contents($file, "<?php \n\n return[];");
             }
         }
@@ -151,7 +153,8 @@ class Manager
      * ex. for $keys = ['name' => ['en' => 'name', 'nl' => 'naam']
      *
      * @param string $fileName
-     * @param array $keys
+     * @param array  $keys
+     *
      * @return void
      */
     public function fillKeys($fileName, array $keys)
@@ -180,6 +183,7 @@ class Manager
      *
      * @param string $fileName
      * @param string $key
+     *
      * @return void
      */
     public function removeKey($fileName, $key)
@@ -199,7 +203,8 @@ class Manager
      * Write a language file from array.
      *
      * @param string $filePath
-     * @param array $translations
+     * @param array  $translations
+     *
      * @return void
      */
     public function writeFile($filePath, array $translations)
@@ -217,6 +222,7 @@ class Manager
      * Write the lines of the inner array of the language file.
      *
      * @param $array
+     *
      * @return string
      */
     private function stringLineMaker($array, $prepend = '')
@@ -242,14 +248,16 @@ class Manager
      * Get the content in the given file path.
      *
      * @param string $filePath
-     * @param bool $createIfNotExists
-     * @return array
+     * @param bool   $createIfNotExists
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
+     * @return array
      */
     public function getFileContent($filePath, $createIfNotExists = false)
     {
-        if ($createIfNotExists && ! $this->disk->exists($filePath)) {
-            if (! $this->disk->exists($directory = dirname($filePath))) {
+        if ($createIfNotExists && !$this->disk->exists($filePath)) {
+            if (!$this->disk->exists($directory = dirname($filePath))) {
                 mkdir($directory, 0777, true);
             }
 
@@ -324,7 +332,7 @@ class Manager
             ')'.// Close group
             "[\'\"]".// Closing quote
             "[\),]"  // Close parentheses or new parameter
-        ;
+;
 
         $allMatches = [];
 
@@ -342,6 +350,7 @@ class Manager
      * Sets the path to a vendor package translation files.
      *
      * @param string $packageName
+     *
      * @return void
      */
     public function setPathToVendorPackage($packageName)
@@ -357,6 +366,7 @@ class Manager
      * other and outputs an array consists of those keys.
      *
      * @param $values
+     *
      * @return array
      */
     public function getKeysExistingInALanguageButNotTheOther($values)
@@ -379,7 +389,7 @@ class Manager
             }
 
             foreach ($this->languages() as $languageName) {
-                if (! Arr::has($values, "{$fileName}.{$languageName}.{$key}") && ! array_key_exists("{$fileName}.{$languageName}.{$key}", $values)) {
+                if (!Arr::has($values, "{$fileName}.{$languageName}.{$key}") && !array_key_exists("{$fileName}.{$languageName}.{$key}", $values)) {
                     $missing[] = "{$fileName}.{$key}:{$languageName}";
                 }
             }

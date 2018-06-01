@@ -10,8 +10,8 @@ class ManagerTest extends TestCase
         $manager = $this->app[\NicolasBeauvais\Transcribe\Manager::class];
 
         $this->createTempFiles([
-            'en' => ['user' => '', 'category' => ''],
-            'nl' => ['user' => '', 'category' => ''],
+            'en'     => ['user' => '', 'category' => ''],
+            'nl'     => ['user' => '', 'category' => ''],
             'vendor' => ['package' => ['en' => ['user' => '', 'product' => ''], 'sp' => ['user' => '', 'product' => '']]],
         ]);
 
@@ -81,10 +81,10 @@ class ManagerTest extends TestCase
         $filePath = $this->app['config']['transcribe.path'].'/en/user.php';
 
         $values = [
-            'name' => ['first' => 'first', 'last' => ['last1' => '1', 'last2' => 2]],
-            'age' => 'age',
+            'name'          => ['first' => 'first', 'last' => ['last1' => '1', 'last2' => 2]],
+            'age'           => 'age',
             'double_quotes' => '"with quotes"',
-            'quotes' => "With some ' quotes",
+            'quotes'        => "With some ' quotes",
         ];
 
         $manager->writeFile($filePath, $values);
@@ -257,8 +257,8 @@ class ManagerTest extends TestCase
         $manager->shouldReceive('languages')->andReturn(['en', 'nl']);
 
         $results = $manager->getKeysExistingInALanguageButNotTheOther([
-            'user.en.name' => 'a',
-            'user.nl.phone' => 'a',
+            'user.en.name'    => 'a',
+            'user.nl.phone'   => 'a',
             'user.en.address' => 'a',
             'user.nl.address' => 'a',
         ]);
