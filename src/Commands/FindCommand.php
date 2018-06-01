@@ -5,7 +5,6 @@ namespace NicolasBeauvais\Transcribe\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use NicolasBeauvais\Transcribe\Manager;
-use Illuminate\Support\Str;
 
 class FindCommand extends Command
 {
