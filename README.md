@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nicolasbeauvais/laravel-transcribe.svg?style=flat-square)](https://packagist.org/packages/nicolasbeauvais/laravel-transcribe)
 [![Build Status](https://img.shields.io/travis/nicolasbeauvais/laravel-transcribe/master.svg?style=flat-square)](https://travis-ci.org/nicolasbeauvais/laravel-transcribe)
+[![StyleCI](https://styleci.io/repos/135723983/shield)](https://styleci.io/repos/135723983)
 [![Quality Score](https://img.shields.io/scrutinizer/g/nicolasbeauvais/laravel-transcribe.svg?style=flat-square)](https://scrutinizer-ci.com/g/nicolasbeauvais/laravel-transcribe)
 [![Total Downloads](https://img.shields.io/packagist/dt/nicolasbeauvais/laravel-transcribe.svg?style=flat-square)](https://packagist.org/packages/nicolasbeauvais/laravel-transcribe)
 
