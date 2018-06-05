@@ -119,7 +119,7 @@ class MissingCommand extends Command
 
             $filePath = $this->manager->files()[$file][config('app.fallback_locale')];
 
-            return config('app.fallback_locale') . ':' . array_get($this->manager->getFileContent($filePath), $key);
+            return config('app.fallback_locale').':'.array_get($this->manager->getFileContent($filePath), $key);
         } catch (\Exception $e) {
             return;
         }
