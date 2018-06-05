@@ -63,24 +63,7 @@ class MissingCommand extends Command
 
         $missing = $this->getMissing($languages);
 
-        $values = $this->collectValues($missing);
-
-        $input = [];
-
-        foreach ($values as $key => $value) {
-            preg_match('/^([^\.]*)\.(.*):(.*)/', $key, $matches);
-
-            $input[$matches[1]][$matches[2]][$matches[3]] = $value;
-
-            $this->line("\"<fg=yellow>{$key}</>\" was set to \"<fg=yellow>{$value}</>\" successfully.");
-        }
-
-        foreach ($input as $fileName => $values) {
-            $this->manager->fillKeys(
-                $fileName,
-                $values
-            );
-        }
+        $values = $this->translateValues($missing);
 
         $this->info('Done!');
     }
@@ -92,14 +75,23 @@ class MissingCommand extends Command
      *
      * @return array
      */
-    private function collectValues(array $missing)
+    private function translateValues(array $missing)
     {
         $values = [];
 
         foreach ($missing as $missingKey) {
-            $values[$missingKey] = $this->ask(
+            $value = $this->ask(
                 "<fg=yellow>{$missingKey}</> translation", $this->getDefaultValue($missingKey)
             );
+
+            preg_match('/^([^\.]*)\.(.*):(.*)/', $missingKey, $matches);
+
+            $this->manager->fillKeys(
+                $matches[1],
+                [$matches[2] => [$matches[3] => $value]]
+            );
+
+            $this->line("\"<fg=yellow>{$missingKey}</>\" was set to \"<fg=yellow>{$value}</>\" successfully.");
         }
 
         return $values;
