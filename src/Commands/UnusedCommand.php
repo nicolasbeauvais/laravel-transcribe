@@ -12,24 +12,26 @@ class UnusedCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'langman:unused';
+    protected $signature = 'transcribe:unused';
+
     /**
      * The description of the console command.
      *
      * @var string
      */
     protected $description = 'Look for translations in views and update missing key in language files.';
+
     /**
      * The Languages manager instance.
      *
-     * @var \Themsaid\LangMan\Manager
+     * @var \NicolasBeauvais\Transcribe\Manager
      */
     private $manager;
 
     /**
      * Command constructor.
      *
-     * @param \Themsaid\LangMan\Manager $manager
+     * @param \NicolasBeauvais\Transcribe\Manager $manager
      *
      * @return void
      */
