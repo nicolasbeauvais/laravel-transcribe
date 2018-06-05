@@ -59,11 +59,7 @@ class MissingCommand extends Command
     {
         $this->info('Looking for missing translations...');
 
-        $languages = $this->manager->languages();
-
-        $missing = $this->getMissing($languages);
-
-        $values = $this->translateValues($missing);
+        $this->translateValues($this->getMissing());
 
         $this->info('Done!');
     }
@@ -135,7 +131,7 @@ class MissingCommand extends Command
      *
      * @return array
      */
-    private function getMissing(array $languages)
+    private function getMissing()
     {
         $files = $this->manager->files();
 

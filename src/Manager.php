@@ -83,6 +83,8 @@ class Manager
         // neglect all vendor files.
         if (!Str::contains($this->path, 'vendor')) {
             $filesByFile = $this->neglectVendorFiles($filesByFile);
+        } else {
+            $filesByFile = $filesByFile->toArray();
         }
 
         return $filesByFile;
@@ -331,15 +333,16 @@ class Manager
             "([.][^\1)$]+)+".// Be followed by one or more items/keys
             ')'.// Close group
             "[\'\"]".// Closing quote
-            "[\),]"  // Close parentheses or new parameter
-;
+            "[\),]";  // Close parentheses or new parameter
 
         $allMatches = [];
 
-        /** @var \Symfony\Component\Finder\SplFileInfo $file */
-        foreach ($this->disk->allFiles($this->syncPaths) as $file) {
-            if (preg_match_all("/$pattern/siU", $file->getContents(), $matches)) {
-                $allMatches[$file->getRelativePathname()] = $matches[2];
+        foreach ($this->syncPaths as $syncPath) {
+            /** @var \Symfony\Component\Finder\SplFileInfo $file */
+            foreach ($this->disk->allFiles($syncPath) as $file) {
+                if (preg_match_all("/$pattern/siU", $file->getContents(), $matches)) {
+                    $allMatches[$file->getRelativePathname()] = $matches[2];
+                }
             }
         }
 
