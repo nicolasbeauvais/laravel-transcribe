@@ -3,7 +3,6 @@
 namespace NicolasBeauvais\Transcribe\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Arr;
 use NicolasBeauvais\Transcribe\Manager;
 
 class UnusedCommand extends Command
@@ -26,10 +25,12 @@ class UnusedCommand extends Command
      * @var \Themsaid\LangMan\Manager
      */
     private $manager;
+
     /**
      * Command constructor.
      *
      * @param \Themsaid\LangMan\Manager $manager
+     *
      * @return void
      */
     public function __construct(Manager $manager)
@@ -37,6 +38,7 @@ class UnusedCommand extends Command
         parent::__construct();
         $this->manager = $manager;
     }
+
     /**
      * Execute the console command.
      *
@@ -48,11 +50,14 @@ class UnusedCommand extends Command
         $this->reportUnused($translationFiles);
         $this->info('Done!');
     }
+
     /**
-     * Report unused keys in translation files
+     * Report unused keys in translation files.
      *
      * @param $translationFiles
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
      * @return void
      */
     private function reportUnused($translationFiles)
