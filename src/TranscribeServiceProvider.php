@@ -37,6 +37,7 @@ class TranscribeServiceProvider extends ServiceProvider
             \NicolasBeauvais\Transcribe\Commands\FindCommand::class,
             \NicolasBeauvais\Transcribe\Commands\SyncCommand::class,
             \NicolasBeauvais\Transcribe\Commands\RenameCommand::class,
+            \NicolasBeauvais\Transcribe\Commands\UnusedCommand::class,
         ]);
     }
 }

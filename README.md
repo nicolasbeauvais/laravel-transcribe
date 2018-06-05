@@ -23,7 +23,7 @@ Begin by installing the package through Composer. Run the following command in y
 $ composer require nicolasbeauvais/laravel-transcribe
 ```
 
-Once done, add the following line in your providers array of `config/app.php`:
+If you're using Laravel 5.5 or higher the package will automatically register itself. If you're using Laravel 5.4 or lower, add the following line in your providers array of `config/app.php`:
 
 ```php
 NicolasBeauvais\Transcribe\TranscribeServiceProvider::class
@@ -114,6 +114,15 @@ php artisan transcribe:sync
 
 This command will look into all files in `resources/views` and `app` and find all translation keys that are not covered in your translation files, after
 that it appends those keys to the files with a value equal to an empty string.
+
+### Searching translations for unused keys
+
+```
+php artisan langman:unused
+```
+
+This command will look into all language files and find all keys that are not
+used in your view files.
 
 ### Filling missing translations
 
