@@ -121,11 +121,13 @@ class MissingCommand extends Command
         try {
             $missingKey = explode(':', $missingKey)[0];
 
-            list($file, $key) = explode('.', $missingKey);
+            $decomposedKey = explode('.', $missingKey);
+            $file = array_shift($decomposedKey);
+            $key = implode('.', $decomposedKey);
 
-            $filePath = $this->manager->files()[$file][config('app.locale')];
+            $filePath = $this->manager->files()[$file][config('app.fallback_locale')];
 
-            return config('app.locale').":{$this->manager->getFileContent($filePath)[$key]}";
+            return config('app.fallback_locale') . ':' . array_get($this->manager->getFileContent($filePath), $key);
         } catch (\Exception $e) {
             return;
         }
