@@ -52,7 +52,7 @@ class MissingCommandTest extends TestCase
     {
         $manager = $this->app[Manager::class];
 
-        $this->app['config']->set('app.locale', 'en');
+        $this->app['config']->set('app.fallback_locale', 'en');
 
         $this->createTempFiles([
             'en' => [
@@ -75,7 +75,7 @@ class MissingCommandTest extends TestCase
     {
         $manager = $this->app[Manager::class];
 
-        $this->app['config']->set('app.locale', 'es');
+        $this->app['config']->set('app.fallback_locale', 'es');
 
         $this->createTempFiles([
             'en' => [
