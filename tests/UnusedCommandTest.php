@@ -22,4 +22,3 @@ class UnusedCommandTest extends TestCase
         array_map('unlink', glob(__DIR__.'/views_temp/user.blade.php'));
     }
 }
-
