@@ -78,7 +78,7 @@ class MissingCommand extends Command
         foreach ($missing as $missingKey) {
             $default = $this->getDefaultValue($missingKey);
             $value = $this->ask(
-                "<fg=yellow>{$missingKey}</> translation [" . config('app.fallback_locale').": $default]",
+                "<fg=yellow>{$missingKey}</> translation [".config('app.fallback_locale').": $default]",
                 $this->option('default') ? $default : null
             );
 
