@@ -76,8 +76,10 @@ class MissingCommand extends Command
         $values = [];
 
         foreach ($missing as $missingKey) {
+            $default = $this->getDefaultValue($missingKey);
             $value = $this->ask(
-                "<fg=yellow>{$missingKey}</> translation", $this->getDefaultValue($missingKey)
+                "<fg=yellow>{$missingKey}</> translation [" . config('app.fallback_locale').": $default]",
+                $this->option('default') ? $default : null
             );
 
             preg_match('/^([^\.]*)\.(.*):(.*)/', $missingKey, $matches);
@@ -102,10 +104,6 @@ class MissingCommand extends Command
      */
     private function getDefaultValue($missingKey)
     {
-        if (!$this->option('default')) {
-            return;
-        }
-
         try {
             $missingKey = explode(':', $missingKey)[0];
 
@@ -115,7 +113,7 @@ class MissingCommand extends Command
 
             $filePath = $this->manager->files()[$file][config('app.fallback_locale')];
 
-            return config('app.fallback_locale').':'.array_get($this->manager->getFileContent($filePath), $key);
+            return array_get($this->manager->getFileContent($filePath), $key);
         } catch (\Exception $e) {
             return;
         }

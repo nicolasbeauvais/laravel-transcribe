@@ -64,7 +64,7 @@ class MissingCommandTest extends TestCase
         ]);
 
         $command = m::mock('\NicolasBeauvais\Transcribe\Commands\MissingCommand[ask]', [$manager]);
-        $command->shouldReceive('ask')->once()->with('/<fg=yellow>user\.age:nl<\/> translation/', '/en:Age/');
+        $command->shouldReceive('ask')->once()->with('/<fg=yellow>user\.age:nl<\/> translation \[en\: Age\]/', '/Age/');
 
         $this->app['artisan']->add($command);
 
